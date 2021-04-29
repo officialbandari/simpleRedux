@@ -1,4 +1,7 @@
-const { createStore, combineReducers } = require("redux")
+const { createStore, combineReducers, applyMiddleware } = require("redux")
+
+//logger is middleware for redux
+const logger = require("redux-logger").default;
 
 
 //INITIALSTATE TYPES
@@ -67,7 +70,7 @@ const rootReducer = combineReducers({
 })
 
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(logger))
 store.subscribe(() => { console.log(store.getState()) })
 
 store.dispatch(buyMobile())
